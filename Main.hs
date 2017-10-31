@@ -5,6 +5,7 @@ import System.Environment
 import Compile
 import Evaluate
 import Parser
+import Show
 
 main :: IO ()
 main =
@@ -12,4 +13,4 @@ main =
      input <- readFile fname
      case parseProgram input of
        Left err -> putStrLn $ show err
-       Right p -> putStrLn $ show $ (eval . compile) p
+       Right p -> putStrLn $ (showResults . eval . compile) p

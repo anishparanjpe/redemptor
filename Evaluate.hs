@@ -4,9 +4,12 @@ import Gmachine
 import Language
 import Util
 
-eval :: GmState -> GmState
-eval state@([], _, _, _, _) = state
-eval state = eval $ doAdmin (step state)
+eval :: GmState -> [GmState]
+eval state@([], _, _, _, _) = [state]
+eval state = state : restStates
+  where
+    restStates = eval nextState
+    nextState = doAdmin (step state)
 
 doAdmin :: GmState -> GmState
 doAdmin (c, st, h, g, s) = (c, st, h, g, s + 1)

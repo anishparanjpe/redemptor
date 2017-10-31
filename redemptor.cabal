@@ -6,12 +6,14 @@ cabal-version: >= 1.12
 executable redemptor
   build-depends: base
                , parsec
+               , pretty
   main-is: Main.hs
   other-modules: Compile
                , Evaluate
                , Gmachine
                , Language
                , Parser
+               , Show
                , Util
   ghc-options: -Wall
   default-language: Haskell2010
